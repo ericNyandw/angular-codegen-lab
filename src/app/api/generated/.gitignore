@@ -1,0 +1,22 @@
+# --- Dependances ---
+node_modules/
+
+# --- Build & Output ---
+dist/
+wwwroot/
+.angular/
+
+# --- CODE GENERE (Crucial pour ton Lab) ---
+# On ignore le code genere car il doit etre regenere au build
+# On ignore tout le dossier racine des APIs générées
+src/app/api/
+
+# --- Environnements & Secrets ---
+.env
+src/environments/environment.prod.ts
+
+# --- IDE & OS ---
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
