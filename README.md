@@ -8,7 +8,7 @@ Projet d'implémentation pratique pour la génération de code API avec **Angula
 
 Ce projet est une étude de cas concrète qui suit les standards définis dans mon guide d'ingénierie complet :
 
-👉 [**Consulter le Guide : Codegen & Contract-First (Angular)**](https://github.com)
+👉 [**Consulter le Guide : Codegen & Contract-First (Angular)**](https://github.com/ericNyandw/engineering-styleguides/blob/main/codegen-guide/java-codegen-guide.md)
 
 ---
 
