@@ -1,0 +1,5 @@
+// src/app/app.scss
+.nav-link.active {
+  color: var(--bs-primary) !important; // Force la couleur bleue de Bootstrap
+  border-bottom: 2px solid var(--bs-primary); // Optionnel : ajoute une petite ligne en dessous
+}

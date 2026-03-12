@@ -1,0 +1,83 @@
+<div class="row g-4 p-4">
+
+  <!-- COLONNE GAUCHE : FORMULAIRE DE SAISIE -->
+  <div class="col-lg-5">
+    <div class="card shadow-sm border-0">
+      <div class="card-header bg-dark text-white py-3">
+        <h5 class="mb-0">📦 Nouveau Produit (Postgres)</h5>
+      </div>
+
+      <div class="card-body p-4">
+        <div class="mb-3">
+          <label class="form-label fw-bold small text-uppercase">Nom du produit</label>
+          <input type="text" class="form-control"
+                 [ngModel]="newProductForm().label"
+                 (ngModelChange)="updateForm('label', $event)"
+                 placeholder="Ex: Clavier Mécanique">
+        </div>
+
+        <!-- PRIX -->
+        <div class="mb-3">
+          <label class="form-label fw-bold small text-uppercase">Prix (€)</label>
+          <input type="number" class="form-control"
+                 [ngModel]="newProductForm().price"
+                 (ngModelChange)="updateForm('price', $event)">
+        </div>
+
+        <!-- DESCRIPTION -->
+        <div class="mb-3">
+          <label class="form-label fw-bold small text-uppercase">Description</label>
+          <textarea class="form-control" rows="3"
+                    [ngModel]="newProductForm().description"
+                    (ngModelChange)="updateForm('description', $event)"
+                    placeholder="Détails techniques..."></textarea>
+        </div>
+
+        <button class="btn btn-primary btn-lg w-100 shadow-sm mt-3"
+                (click)="onCreateProduct()"
+                [disabled]="!newProductForm().label || newProductForm().price <= 0">
+          🚀 Enregistrer en Base de Données
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- COLONNE DROITE : LISTE RÉACTIVE -->
+  <div class="col-lg-7">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h5 class="text-muted mb-0">Catalogue en temps réel</h5>
+
+      <!-- Feedback visuel du Signal isLoading -->
+      @if (isLoading()) {
+        <div class="spinner-border spinner-border-sm text-primary" role="status"></div>
+      }
+    </div>
+
+    <div class="list-group shadow-sm">
+      <!-- Boucle sur le Signal products() -->
+      @for (item of products(); track item.id) {
+        <div class="list-group-item list-group-item-action d-flex justify-content-between align-items-center p-3">
+          <div class="flex-grow-1">
+            <h6 class="mb-1 fw-bold text-dark">{{ item.label }}</h6>
+            <p class="mb-0 text-muted small">{{ item.description }}</p>
+            <div class="text-muted x-small mt-1 italic">UUID/ID: {{ item.id }}</div>
+          </div>
+          <div class="text-end ms-3">
+            <span class="badge bg-success rounded-pill px-3 py-2 fs-6">
+              {{ item.price | number:'1.2-2' }} €
+            </span>
+          </div>
+        </div>
+      } @empty {
+        <!-- État vide si le Signal est un tableau vide -->
+        <div class="card border-dashed py-5 text-center bg-light">
+          <div class="opacity-50">
+            <p class="mb-0 h5">PostgreSQL est vide</p>
+            <small>Ajoutez votre premier produit via le formulaire.</small>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+</div>
